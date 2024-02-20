@@ -1,12 +1,11 @@
 package app;
 
-import java.util.ArrayList;
-import java.util.Timer;
-
-import javax.swing.JFrame;
-
 import utils.ApplicationTime;
 import utils.FrameUpdater;
+
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Timer;
 
 public abstract class Animation {
 

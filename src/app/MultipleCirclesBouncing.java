@@ -1,14 +1,10 @@
 package app;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import utils.ApplicationTime;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * This class shall do the following:
@@ -64,14 +60,14 @@ class MultipleCirclesBouncingPanel extends JPanel {
 		currentX = new double[numBalls];
 		currentY = new double[numBalls];
 		// avoid starting positions at the border of the window
-		double border = 20.0;
+		double border = 50.0;
 		// needed for the initial velocity range
 		double minSpeed = 50.0;
 		double maxSpeed = 100.0;
 		for (int i = 0; i < numBalls; i++) {
 
-			startX[i] = getRandomValueInRange(border, (double) Constants.WINDOW_HEIGHT - border);
-			startY[i] = getRandomValueInRange(border, (double) Constants.WINDOW_WIDTH - border);
+			startY[i] = getRandomValueInRange(border, (double) Constants.WINDOW_HEIGHT - border);
+			startX[i] = getRandomValueInRange(border, (double) Constants.WINDOW_WIDTH - border);
 
 			vX[i] = getRandomValueInRange(minSpeed, maxSpeed);
 			vY[i] = getRandomValueInRange(minSpeed, maxSpeed);
@@ -100,6 +96,8 @@ class MultipleCirclesBouncingPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 
 		super.paintComponent(g);
+		Constants.WINDOW_WIDTH = getWidth();
+		Constants.WINDOW_HEIGHT = getHeight();
 
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
@@ -108,7 +106,7 @@ class MultipleCirclesBouncingPanel extends JPanel {
 		double deltaTime = time - lastFrameTime;
 		lastFrameTime = time;
 
-		for (int i = 1; i < numBalls; i++) {
+		for (int i = 0; i < numBalls; i++) {
 
 			currentX[i] = currentX[i] + (vX[i] * deltaTime);
 			currentY[i] = currentY[i] + (vY[i] * deltaTime);
@@ -125,7 +123,7 @@ class MultipleCirclesBouncingPanel extends JPanel {
 				currentX[i] = currentX[i] + 1;
 			}
 
-			if (currentY[i] >= Constants.WINDOW_HEIGHT) {
+			if (currentY[i] >= Constants.WINDOW_HEIGHT - diameter) {
 				// Object has hit the floor
 				vY[i] = -vY[i];
 				currentY[i] = currentY[i] - 1;

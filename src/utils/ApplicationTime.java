@@ -1,7 +1,8 @@
 package utils;
 
 import app.Constants;
-import java.util.concurrent.atomic.*;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ApplicationTime extends Thread {
 	//time in ms

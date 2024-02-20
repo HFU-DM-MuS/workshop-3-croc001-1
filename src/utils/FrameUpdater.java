@@ -1,9 +1,9 @@
 package utils;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.TimerTask;
-import javax.swing.JFrame;
 
 public class FrameUpdater extends TimerTask
 {
